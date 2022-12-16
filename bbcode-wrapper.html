@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - BBCode Wrapper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://assets.codepen.io/7598158/mdb.dark.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+<div class="container my-5">
+  <section>
+    <section id="demo" class="">
+      <h1>BBCode Wrapper</h1>
+      <p>Enter your BBCode in the box below and click the "Process" button to [noparse] wrap it.</p>
+      <textarea id="bbcode" class="form-control"></textarea>
+      <br>
+      <button id="process-button" class="btn btn-primary">Process BBCode</button>
+      <br><br>
+      <h2>Wrapped BBCode:</h2>
+      <textarea id="output" class="form-control"></textarea>
+      <br>
+      <div id="copy-button-container" class="my-3">
+        <button id="copy-button" class="btn btn-primary"><i class="fa-regular fa-copy"></i> Copy</button>
+      </div>      
+    </section>
+  </section>
+</div>
+<script src='https://mdbootstrap.com/api/snippets/static/download/MDB5-Pro-Advanced_3.8.1/plugins/js/all.min.js'></script>
+<script src='https://mdbootstrap.com/api/snippets/static/download/MDB5-Pro-Advanced_3.8.1/js/mdb.min.js'></script>
+<script>
+  // Get a reference to the process button and output textarea
+let processButton = document.getElementById("process-button");
+let copyButton = document.getElementById("copy-button");
+let outputTextarea = document.getElementById("output");
+
+// Add an event listener to the process button
+processButton.addEventListener("click", function () {
+  // Get the BBCode from the textarea
+  let bbcode = document.getElementById("bbcode").value;
+
+  // Split the BBCode into an array of lines
+  let lines = bbcode.split("\n");
+
+  // Initialize a result string
+  let result = "";
+
+  // Iterate through the lines
+  for (let i = 0; i < lines.length; i++) {
+    // Trim leading spaces and tabs from the line
+    let line = lines[i].replace(/^[ \t]+/g, "");
+
+    // Wrap the line in [noparse] [/noparse] tags
+    result += "[noparse]" + line + "[/noparse]";
+
+    // Add a [br] at the end of each line except the very last one
+    if (i < lines.length - 1) {
+      result += "[br]\n";
+    }
+  }
+
+  // Set the value of the output textarea to the processed BBCode
+  outputTextarea.value = result;
+});
+
+// Add an event listener to the copy button
+copyButton.addEventListener("click", function () {
+  // Select the contents of the output textarea
+  outputTextarea.select();
+
+  // Copy the selected text to the clipboard
+  document.execCommand("copy");
+
+  // Change the text of the copy button to "Copied!"
+  copyButton.textContent = "Copied!";
+
+  // Change the text of the copy button back to "Copy Output" after 3 seconds
+  setTimeout(function () {
+    copyButton.textContent = "Copy";
+  }, 3000);
+});
+</script>
+
+</body>
+</html>
