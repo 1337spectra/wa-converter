@@ -1,7 +1,6 @@
 function convertToBBCode() {
   // Get the HTML input
   var html = document.getElementById('html-input').value;
-
   // Convert the HTML to BBCode
   var bbcode = html
     // Replace opening and closing paragraph tags with BBCode paragraph tags
@@ -100,7 +99,7 @@ function convertToBBCode() {
     // Replace div elements with class "col" with BBCode col or col3 tags
     //.replace(/<div class="col">/g, '[col]')
     //.replace(/<div class="row">/g, '[row]')
-    .replace(/<div class="row">(?:.*?)<div class="col">(.*?)<div class="col">(.*?)<div class="col">(.*?)<\/div>/g, "[row]\n[col3]$1[/col3]\n[col3]$2[/col3]\n[col3]$3[/col3]\n[/row]")    
+    .replace(/<div class="row">(?:.*?)<div class="col">(.*?)<div class="col">(.*?)<div class="col">(.*?)<\/div>/g, "[row]\n[col3]$1[/col3]\n[col3]$2[/col3]\n[col3]$3[/col3]\n[/row]")
     .replace(/<div class="col">(.*?)<\/div>/g, "[col]$1[/col]")
     .replace(/<div class="row">(.*?)<\/div>/g, "[row]$1[/row]")
     .replace(/;">/g, ']')
@@ -110,6 +109,22 @@ function convertToBBCode() {
     .replace(/<span style="color:/g, '[color:')
     .replace(/<span class="/g, '[section:')
     .replace(/<\/span>/g, '[/section]')
-    // Set the BBCode output
-    document.getElementById('bbcode-output').value = bbcode;
-  }
+  // Set the BBCode output
+  document.getElementById('bbcode-output').value = bbcode;
+}
+
+function copyToClipboard() {
+  // Get the textarea element
+  var textarea = document.getElementById('bbcode-output');
+  // Select the text in the textarea
+  textarea.select();
+  // Copy the selected text to the clipboard
+  document.execCommand('copy');
+  // Change the button text to 'Copied!'
+  var button = document.getElementById('copy-button');
+  button.textContent = 'Copied!';
+  // Reset the button text after 3 seconds
+  setTimeout(function () {
+    button.textContent = 'Copy';
+  }, 3000);
+}
