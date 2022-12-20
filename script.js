@@ -101,6 +101,7 @@ function convertToBBCode() {
     .replace(/<div class="col">(.*?)<\/div>/g, "[col]$1[/col]")
     .replace(/<div class="row">(.*?)<\/div>/g, "[row]$1[/row]")
     .replace(/" \/>/g, ']')
+    .replace(/"\/>/g, ']')
     .replace(/;">/g, ']')
     .replace(/class="/g, ':')
     .replace(/src="/g, ':')
