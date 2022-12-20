@@ -80,14 +80,12 @@ function convertToBBCode() {
     .replace(/<li>/g, "[li]")
     .replace(/<\/li>/g, "[/li]")
     // Replace link tags with BBCode link tags
-    .replace(/<a href='([^']+)'>/g, "[url:$1]")
+    .replace(/<a href="/g, '[url:')
     .replace(/<\/a>/g, "[/url]")
     // Replace anchor tags with BBCode anchor tags
     .replace(/<h3 id='([^']+)'>/g, "[h3|$1]")
     .replace(/<\/h3>/g, "[/h3]")
     .replace(/<span id='([^']+)'>/g, "[anchor|$1]")
-    .replace(/<a href='#([^']+)'>/g, "[url:#$1]")
-    .replace(/<\/a>/g, "[/url]")
     .replace(/<table>/g, "[table]")
     .replace(/<\/table>/g, "[/table]")
     .replace(/<tr>/g, "[tr]")
