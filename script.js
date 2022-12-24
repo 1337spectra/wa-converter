@@ -103,6 +103,8 @@ function convertToBBCode() {
     .replace(/<div class="/g, '[container:')
     .replace(/<div>/g, '[container:CLASS_HERE]')
     .replace(/<\/div>/g, '[/container]')
+    .replace(/<span class="/g, '[section:')
+    .replace(/<\/span>/g, '[/section]')
     .replace(/;">/g, ']')
     .replace(/class="/g, ':')
     .replace(/" \/>/g, ']')
@@ -113,8 +115,7 @@ function convertToBBCode() {
     .replace(/>/g, ']')
     .replace(/</g, '[')
     .replace(/<span style="color:/g, '[color:')
-    .replace(/<span class="/g, '[section:')
-    .replace(/<\/span>/g, '[/section]')
+   
   // Set the BBCode output
   document.getElementById('bbcode-output').value = bbcode;
 }
